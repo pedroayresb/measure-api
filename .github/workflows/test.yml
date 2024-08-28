@@ -1,4 +1,4 @@
-name: Measure Evaluator
+name: evaluator
 
 on:
   pull_request:
