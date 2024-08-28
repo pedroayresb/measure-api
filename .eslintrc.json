@@ -1,0 +1,67 @@
+{
+  "env": {
+    "browser": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    "import",
+    "prettier",
+    "json"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2016,
+    "sourceType": "commonjs"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".ts"
+        ]
+      }
+    }
+  },
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto",
+        "trailingComma": "all",
+        "tabWidth": 2,
+        "indent": "off"
+      }
+    ],
+    "import/no-unresolved": "warn",
+    "import/no-extraneous-dependencies": "off",
+    "import/extensions": "off",
+    "import/no-cycle": "off",
+    "camelcase": "off",
+    "no-continue": "warn",
+    "no-nested-ternary": "warn",
+    "consistent-return": "warn",
+    "no-restricted-syntax": "warn",
+    "default-param-last": "warn",
+    "no-param-reassign": "warn",
+    "no-prototype-builtins": "off",
+    "no-underscore-dangle": "off",
+    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    "no-console": [
+      "warn",
+      {
+        "allow": [
+          "warn",
+          "error"
+        ]
+      }
+    ]
+  }
+}

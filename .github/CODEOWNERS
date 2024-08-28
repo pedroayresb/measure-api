@@ -1,0 +1,8 @@
+# CODEOWNERS file
+# About: https://help.github.com/en/articles/about-code-owners
+# Precedence matters! Last rule wins.
+# For rules at the same level of precedence, keep alphabetical ordering.
+
+# The tech lead is responsible for evaluate changes made to this repository
+# on a temporary basis, while team members learn to model the system.
+/src/* @pedroayresb

@@ -1,0 +1,47 @@
+name: Measure Evaluator
+
+on:
+  pull_request:
+
+jobs:
+  evaluator:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: measures
+          PGUSER: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: Fetch project repository
+        uses: actions/checkout@v2
+
+      - name: Setup NodeJS
+        uses: actions/setup-node@v1.4.4
+        with:
+          node-version: '20-alpine3.19'
+
+      - name: Create .env file
+        run: |
+          touch prisma.env
+          echo "DATABASE_URL=/"postgresql://postgres:postgres@postgres:5432/measures?schema=public/"" >> .env
+
+      - name: Run NPM install
+        run: npm install
+
+      - name: Run Prisma migration
+        run: npx prisma migrate deploy
+
+      - name: Run Jest evaluation
+        run: npm run test
