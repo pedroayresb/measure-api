@@ -30,12 +30,12 @@ jobs:
       - name: Setup NodeJS
         uses: actions/setup-node@v1.4.4
         with:
-          node-version: '20-alpine3.19'
+          node-version: '20'
 
       - name: Create .env file
         run: |
           touch prisma.env
-          echo "DATABASE_URL=/"postgresql://postgres:postgres@postgres:5432/measures?schema=public/"" >> .env
+          echo "DATABASE_URL=postgresql://postgres:postgres@postgres:5432/measures?schema=public/" >> .env
 
       - name: Run NPM install
         run: npm install
