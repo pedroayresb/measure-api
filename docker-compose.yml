@@ -6,11 +6,6 @@ services:
     restart: unless-stopped
     ports:
       - 80:5000
-    env_file:
-      - path: ./prisma.env
-        required: true
-      - path: ./.env
-        required: true
     depends_on:
       postgres:
         condition: service_healthy

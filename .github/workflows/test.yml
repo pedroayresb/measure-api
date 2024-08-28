@@ -35,7 +35,7 @@ jobs:
       - name: Create .env file
         run: |
           touch prisma.env
-          echo "DATABASE_URL=/"postgresql://postgres:postgres@postgres:5432/measures?schema=public/"" >> .env
+          echo "DATABASE_URL=postgresql://postgres:postgres@postgres:5432/measures?schema=public/" >> .env
 
       - name: Run NPM install
         run: npm install
