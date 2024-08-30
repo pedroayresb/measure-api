@@ -18,19 +18,19 @@ enum MEASURE_TYPE {
   GAS
 }
 
-model Customer {
-  id        String   @id @default(cuid())
-  name      String
-  measures  Measure[]
+model Customers {
+  id        String     @id
+  measures Measures[]
 }
 
-model Measure {
+model Measures {
   id        String      @id @default(cuid())
   type      MEASURE_TYPE
-  value     Float
+  geminiValue Float
+  confirmedValue Float?
   createdAt DateTime    @default(now())
   hasConfirmed Boolean
-  customer      Customer        @relation(fields: [customerId], references: [id])
+  customer      Customers        @relation(fields: [customerId], references: [id])
   customerId    String
-  imageUrl     String?
+  imageUrl     String
 }
