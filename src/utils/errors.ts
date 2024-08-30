@@ -1,4 +1,4 @@
-import type { NextFunction, Request, Response } from "express";
+import { IErrors } from "../interfaces/error.interface";
 
 const ERRORS = {
   INVALID_DATA: {
@@ -8,6 +8,10 @@ const ERRORS = {
   DOUBLE_REPORT: {
     description: "Já existe uma leitura para este tipo no mês atual",
     code: 409,
+  },
+  CUSTOMER_NOT_FOUND: {
+    description: "Cliente não encontrado",
+    code: 404,
   },
   MEASURE_NOT_FOUND: {
     description: "Leitura não encontrada",
@@ -25,18 +29,6 @@ const ERRORS = {
     description: "Nenhum registro encontrado",
     code: 404,
   },
-};
+} as IErrors;
 
-function errorHandler(
-  error: Error,
-  _req: Request,
-  res: Response,
-  next: NextFunction,
-) {
-  console.error(error);
-  const err = ERRORS[error.name as keyof typeof ERRORS];
-  res.status(err.code).json({ error_code: err.code, message: err.description });
-  next();
-}
-
-export default errorHandler;
+export default ERRORS;
