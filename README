@@ -1,6 +1,7 @@
 # Measure API
 
 A Measure API é uma Api que se utiliza da tecnologia da LLM da Google para receber imagens de medidores de Água e Gás em forma de DataURI, juntamente com a data e o código do cliente, e as guarda num banco de dados, podendo ser feita uma confirmação desses valores posteriormente
+
 ## Tecnologias Utilizadas
 
 O Measure API é desenvolvido usando as seguintes tecnologias:
@@ -35,4 +36,5 @@ git clone git@github.com:pedroayresb/measure-api.git
 ```bash
 docker compose up --build -d
 ```
+
 Certifique-se de que as portas `80` e `5432` estejam abertas, elas são as necessarias para a execução com o Docker
