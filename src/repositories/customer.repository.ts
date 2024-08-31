@@ -1,12 +1,11 @@
 import type { MeasureType } from "../interfaces/request.interface";
 import type { IMeasureList } from "../interfaces/measure.interface";
 import prisma from "../database";
-import customError from "../utils/customError";
 
 async function getCustomerMeasures(
   id: string,
   type: MeasureType,
-): Promise<IMeasureList> {
+): Promise<IMeasureList | null> {
   const measures = await prisma.customers.findUnique({
     where: {
       id,
@@ -20,14 +19,6 @@ async function getCustomerMeasures(
       },
     },
   });
-
-  if (!measures) {
-    throw customError("CUSTOMER_NOT_FOUND");
-  }
-
-  if (!measures.measures) {
-    throw customError("MEASURE_NOT_FOUND");
-  }
 
   return measures;
 }

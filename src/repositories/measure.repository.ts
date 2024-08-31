@@ -23,7 +23,7 @@ async function createMeasure(
 }
 
 async function confirmMeasure(id: string, confirmedValue: number) {
-  const measure = await prisma.measures.update({
+  await prisma.measures.update({
     where: {
       id,
     },
@@ -32,8 +32,6 @@ async function confirmMeasure(id: string, confirmedValue: number) {
       hasConfirmed: true,
     },
   });
-
-  return measure;
 }
 
 async function getMeasureByFilters(filters: Prisma.MeasuresWhereInput) {

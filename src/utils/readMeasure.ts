@@ -1,6 +1,6 @@
 import gemini from "../gemini";
 
-export default async function readMeasure(base64: string) {
+const read = async (base64: string) => {
   const mimeType = base64.split(";")[0].split(":")[1];
 
   const buffer = Buffer.from(base64.split(",")[1], "base64");
@@ -17,7 +17,7 @@ export default async function readMeasure(base64: string) {
     },
   ];
 
-  const result = await gemini.generateContent({
+  const result = await gemini.model.generateContent({
     contents: [
       {
         role: "user",
@@ -26,7 +26,17 @@ export default async function readMeasure(base64: string) {
     ],
   });
 
+  if (Number.isNaN(Number(result.response.text()))) {
+    throw new Error("INVALID_DATA");
+  }
+
   return {
-    geminiValue: result.response.text(),
+    geminiValue: Number(result.response.text()),
   };
-}
+};
+
+const readMeasure = {
+  read,
+};
+
+export default readMeasure;

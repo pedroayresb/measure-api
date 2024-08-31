@@ -27,6 +27,20 @@ async function checkCustomer(customerId: string) {
   }
 }
 
+async function checkConfirmedMeasure(id: string) {
+  const measure = await measureRepository.getMeasureByFilters({
+    id,
+  });
+
+  if (!measure) {
+    throw customError("MEASURE_NOT_FOUND");
+  }
+
+  if (measure.hasConfirmed) {
+    throw customError("CONFIRMATION_DUPLICATE");
+  }
+}
+
 async function uploadMeasure(
   type: MeasureType,
   createdAt: Date,
@@ -37,7 +51,7 @@ async function uploadMeasure(
 
   await checkCustomer(customerId);
 
-  const { geminiValue } = await readMeasure(imageUrl);
+  const { geminiValue } = await readMeasure.read(imageUrl);
 
   if (Number.isNaN(geminiValue)) {
     throw customError("INVALID_DATA");
@@ -62,12 +76,16 @@ async function uploadMeasure(
 }
 
 async function confirmMeasure(id: string, confirmedValue: number) {
-  measureRepository.confirmMeasure(id, confirmedValue);
+  await checkConfirmedMeasure(id);
+  await measureRepository.confirmMeasure(id, confirmedValue);
 }
 
 const measureService = {
   uploadMeasure,
   confirmMeasure,
+  checkCustomer,
+  checkMeasureType,
+  checkConfirmedMeasure,
 };
 
 export default measureService;
