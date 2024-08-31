@@ -4,8 +4,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --watch \"./src/**\" --ext \"ts,js\" --exec \"ts-node src/index.ts\"",
-    "start": "pm2 start src/index.js --name measure-api --no-autorestart --no-daemon",
-    "test": "jest -i"
+    "start": "pm2 start src/index.js --name measureapi --no-autorestart --no-daemon",
+    "build": "npx -y tsc",
+    "test": "jest -i",
+    "start:prod": "npx prisma migrate dev --name init --preview-feature && pm2 start src/index.js --name measureapi --no-autorestart --no-daemon"
   },
   "dependencies": {
     "@google/generative-ai": "^0.17.1",

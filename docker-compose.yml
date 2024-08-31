@@ -5,7 +5,10 @@ services:
     image: node:20-alpine3.19
     restart: unless-stopped
     ports:
-      - 80:5000
+      - 80:3001
+    build:
+      context: .
+      dockerfile: dockerfile
     depends_on:
       postgres:
         condition: service_healthy

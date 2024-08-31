@@ -10,7 +10,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://postgres:postgres@localhost:5432/measures?schema=public"
+  url      = "postgresql://postgres:postgres@postgres:5432/measures?schema=public"
 }
 
 enum MEASURE_TYPE {

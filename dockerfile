@@ -6,6 +6,10 @@ COPY . .
 
 RUN npm install
 
-EXPOSE 80
+RUN npm run build
 
-CMD [ "npm", "run", "start" ]
+RUN npm i pm2 -g
+
+EXPOSE 3001
+
+CMD ["npm", "run", "start:prod"]
