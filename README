@@ -1,0 +1,38 @@
+# Measure API
+
+A Measure API é uma Api que se utiliza da tecnologia da LLM da Google para receber imagens de medidores de Água e Gás em forma de DataURI, juntamente com a data e o código do cliente, e as guarda num banco de dados, podendo ser feita uma confirmação desses valores posteriormente
+## Tecnologias Utilizadas
+
+O Measure API é desenvolvido usando as seguintes tecnologias:
+
+ - TypeScript
+ - Docker
+ - Node.js
+ - PostgreSQL
+ - Prisma
+ - Gemini
+
+## Características
+
+**Cadastro de leituras**: É possível enviar imagens em formato de DataURI e o valor dos medidores vai ser registrado no banco.
+
+**Histórico de leituras**: Você tem acesso ao seu histórico de leituras de um cliente, permitindo que você visualize todas as leituras realizadas.
+
+**Confirmação de leituras**: É possível realizar a confirmação das leituras ja cadastradas, basta informar o id e o valor confirmado dessa leitura.
+
+## Instalação
+
+Para instalar a Measure API em sua máquina, siga os seguintes passos:
+
+#### Clone o repositório do AyrBank para sua máquina.
+
+```bash
+git clone git@github.com:pedroayresb/measure-api.git
+```
+
+#### Execute o compose
+
+```bash
+docker compose up --build -d
+```
+Certifique-se de que as portas `80` e `5432` estejam abertas, elas são as necessarias para a execução com o Docker
